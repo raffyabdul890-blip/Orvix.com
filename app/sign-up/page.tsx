@@ -2,46 +2,41 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
 
-import { WaitlistForm } from "@/components/auth/waitlist-form";
+import { AuthCard } from "@/components/auth/auth-card";
+import { SignUpForm } from "@/components/auth/sign-up-form";
 
 export const metadata: Metadata = {
   title: "Create account",
-  description: "Join the waitlist for Orvix client accounts.",
+  description: "Create your Orvix account.",
 };
 
 export default function SignUpPage() {
   return (
-    <div className="flex min-h-[80vh] items-center justify-center bg-ink-50/50">
+    <div className="relative isolate flex min-h-[85vh] items-center justify-center overflow-hidden bg-white">
+      <div className="bg-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_60%_60%_at_50%_10%,black,transparent)]" />
+      <div className="absolute top-[-8rem] left-[-8rem] -z-10 size-96 rounded-full bg-brand-500/20 blur-3xl" />
+      <div className="absolute bottom-[-8rem] right-[-8rem] -z-10 size-96 rounded-full bg-accent-400/20 blur-3xl" />
+
       <div className="container-page flex flex-col items-center py-20">
-        <div className="w-full max-w-md rounded-3xl border border-ink-100 bg-white p-8 shadow-sm shadow-ink-900/5 sm:p-10">
-          <span className="flex size-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-600 to-accent-500 text-white">
-            <Sparkles className="size-5" />
+        <AuthCard>
+          <span className="flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-600 to-accent-500 text-white shadow-sm shadow-brand-600/30">
+            <Sparkles className="size-6" />
           </span>
           <h1 className="mt-5 font-display text-2xl font-semibold tracking-tight text-ink-900">
-            Client accounts are launching soon
+            Create your account
           </h1>
           <p className="mt-2 text-sm leading-relaxed text-ink-600">
-            We&apos;re building a client portal to track projects, approvals,
-            and reporting in one place. Join the waitlist and we&apos;ll
-            email you the moment it opens.
+            Sign up to track projects, approvals, and reporting in one place.
           </p>
-
-          <div className="mt-7">
-            <WaitlistForm />
+          <div className="mt-7 w-full">
+            <SignUpForm />
           </div>
-
-          <p className="mt-6 text-center text-sm text-ink-400">
-            Already working with us?{" "}
-            <Link href="/contact" className="font-medium text-brand-600 hover:underline">
-              Contact your strategist
-            </Link>
-          </p>
-        </div>
+        </AuthCard>
 
         <p className="mt-6 text-sm text-ink-400">
-          Have an account question?{" "}
+          Already have an account?{" "}
           <Link href="/sign-in" className="font-medium text-ink-600 hover:text-ink-900">
-            Go to sign in
+            Sign in
           </Link>
         </p>
       </div>

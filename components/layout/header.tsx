@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -9,7 +10,7 @@ import {
   useMotionValueEvent,
   useScroll,
 } from "framer-motion";
-import { ChevronDown, Menu, X, Zap } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site-config";
@@ -127,9 +128,14 @@ export function Header() {
             onMouseEnter={() => setOpenMenu(null)}
             className="group flex items-center gap-2 font-display text-xl font-semibold tracking-tight text-ink-900"
           >
-            <span className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-accent-500 text-white shadow-sm shadow-brand-600/30 transition-transform duration-300 group-hover:scale-105">
-              <Zap className="size-5" fill="currentColor" strokeWidth={0} />
-            </span>
+            <Image
+              src="/orvix-logo.png"
+              alt={siteConfig.name}
+              width={36}
+              height={36}
+              priority
+              className="size-9 shrink-0 rounded-xl transition-transform duration-300 group-hover:scale-105"
+            />
             {siteConfig.name}
           </Link>
 

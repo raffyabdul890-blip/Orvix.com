@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { serviceCategories } from "@/lib/data/services";
 import { siteConfig } from "@/lib/site-config";
@@ -43,9 +44,13 @@ export function Footer() {
               href="/"
               className="flex items-center gap-2 font-display text-xl font-semibold text-white"
             >
-              <span className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-accent-500 text-white">
-                <Zap className="size-5" fill="currentColor" strokeWidth={0} />
-              </span>
+              <Image
+                src="/orvix-logo.png"
+                alt={siteConfig.name}
+                width={36}
+                height={36}
+                className="size-9 shrink-0 rounded-xl"
+              />
               {siteConfig.name}
             </Link>
             <p className="max-w-sm text-sm leading-relaxed text-ink-400">
