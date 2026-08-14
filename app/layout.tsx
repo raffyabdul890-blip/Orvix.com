@@ -4,6 +4,8 @@ import { Instrument_Serif, Plus_Jakarta_Sans, Sora } from "next/font/google";
 import { SiteChrome } from "@/components/layout/site-chrome";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/lib/site-config";
+import { getDisplayName } from "@/lib/auth-helpers";
+import { createClient } from "@/lib/supabase/server";
 
 import "./globals.css";
 
@@ -48,17 +50,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const sessionUser = user ? { displayName: getDisplayName(user) } : null;
+
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body
         className={`${jakarta.variable} ${sora.variable} ${instrumentSerif.variable} font-sans antialiased`}
       >
-        <SiteChrome>{children}</SiteChrome>
+        <SiteChrome user={sessionUser}>{children}</SiteChrome>
         <Toaster />
       </body>
     </html>

@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/lib/supabase/server";
+import { getDisplayName } from "@/lib/auth-helpers";
 import { DashboardSidebar } from "@/components/dashboard/sidebar";
 
 export default async function DashboardLayout({
@@ -17,12 +18,7 @@ export default async function DashboardLayout({
     redirect("/sign-in?next=/dashboard");
   }
 
-  const displayName =
-    user.user_metadata?.full_name ||
-    user.user_metadata?.name ||
-    user.email?.split("@")[0] ||
-    "there";
-
+  const displayName = getDisplayName(user);
   const isGoogle = user.app_metadata?.provider === "google";
 
   return (

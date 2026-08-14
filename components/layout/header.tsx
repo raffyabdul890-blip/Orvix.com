@@ -10,10 +10,11 @@ import {
   useMotionValueEvent,
   useScroll,
 } from "framer-motion";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site-config";
+import { getInitials } from "@/lib/auth-helpers";
 import { Button } from "@/components/ui/button";
 import {
   getCategoryForService,
@@ -21,6 +22,10 @@ import {
   type ServiceCategorySlug,
 } from "@/lib/data/services";
 import { CategoryPanel, ServicesOverviewPanel } from "@/components/layout/nav-panels";
+
+export interface SessionUser {
+  displayName: string;
+}
 
 type NavEntry =
   | { type: "link"; key: string; label: string; href: string }
@@ -52,7 +57,7 @@ const navEntries: NavEntry[] = [
 const triggerClass =
   "relative flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-200 whitespace-nowrap";
 
-export function Header() {
+export function Header({ user }: { user: SessionUser | null }) {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -214,19 +219,33 @@ export function Header() {
             })}
           </nav>
 
-          <div className="hidden items-center gap-1 lg:flex">
-            <Link
-              href="/sign-in"
-              onMouseEnter={() => setOpenMenu(null)}
-              className="rounded-full px-4 py-2 text-sm font-medium text-ink-600 transition-colors hover:text-ink-900"
-            >
-              Sign in
-            </Link>
-            <Button asChild variant="brand" size="sm">
-              <Link href="/sign-up" onMouseEnter={() => setOpenMenu(null)}>
-                Create account
-              </Link>
-            </Button>
+          <div className="hidden items-center gap-2 lg:flex">
+            {user ? (
+              <Button asChild variant="brand" size="sm">
+                <Link href="/dashboard" onMouseEnter={() => setOpenMenu(null)}>
+                  <span className="flex size-5 items-center justify-center rounded-full bg-white/20 text-[10px] font-semibold">
+                    {getInitials(user.displayName)}
+                  </span>
+                  Dashboard
+                  <ArrowRight className="size-3.5" />
+                </Link>
+              </Button>
+            ) : (
+              <>
+                <Link
+                  href="/sign-in"
+                  onMouseEnter={() => setOpenMenu(null)}
+                  className="rounded-full px-4 py-2 text-sm font-medium text-ink-600 transition-colors hover:text-ink-900"
+                >
+                  Sign in
+                </Link>
+                <Button asChild variant="brand" size="sm">
+                  <Link href="/sign-up" onMouseEnter={() => setOpenMenu(null)}>
+                    Create account
+                  </Link>
+                </Button>
+              </>
+            )}
           </div>
 
           <button
@@ -384,16 +403,30 @@ export function Header() {
                 transition={{ delay: navEntries.length * 0.04 }}
                 className="mt-2 flex flex-col gap-2 border-t border-ink-100 pt-4"
               >
-                <Button asChild variant="outline">
-                  <Link href="/sign-in" onClick={() => setIsMenuOpen(false)}>
-                    Sign in
-                  </Link>
-                </Button>
-                <Button asChild variant="brand">
-                  <Link href="/sign-up" onClick={() => setIsMenuOpen(false)}>
-                    Create account
-                  </Link>
-                </Button>
+                {user ? (
+                  <Button asChild variant="brand">
+                    <Link href="/dashboard" onClick={() => setIsMenuOpen(false)}>
+                      <span className="flex size-5 items-center justify-center rounded-full bg-white/20 text-[10px] font-semibold">
+                        {getInitials(user.displayName)}
+                      </span>
+                      Dashboard
+                      <ArrowRight className="size-4" />
+                    </Link>
+                  </Button>
+                ) : (
+                  <>
+                    <Button asChild variant="outline">
+                      <Link href="/sign-in" onClick={() => setIsMenuOpen(false)}>
+                        Sign in
+                      </Link>
+                    </Button>
+                    <Button asChild variant="brand">
+                      <Link href="/sign-up" onClick={() => setIsMenuOpen(false)}>
+                        Create account
+                      </Link>
+                    </Button>
+                  </>
+                )}
               </motion.div>
             </nav>
           </motion.div>
