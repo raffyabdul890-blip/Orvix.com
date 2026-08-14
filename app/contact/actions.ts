@@ -1,6 +1,7 @@
 "use server";
 
 import { sendLeadNotification } from "@/lib/email";
+import { insertLead } from "@/lib/leads";
 
 export interface ContactFormState {
   status: "idle" | "success" | "error";
@@ -40,14 +41,24 @@ export async function submitContactForm(
     };
   }
 
-  await sendLeadNotification({
-    name,
-    email,
-    company: company || undefined,
-    interest: service || undefined,
-    message,
-    source: "contact",
-  });
+  await Promise.allSettled([
+    sendLeadNotification({
+      name,
+      email,
+      company: company || undefined,
+      interest: service || undefined,
+      message,
+      source: "contact",
+    }),
+    insertLead({
+      name,
+      email,
+      company: company || undefined,
+      interest: service || undefined,
+      message,
+      source: "contact",
+    }),
+  ]);
 
   return {
     status: "success",

@@ -1,0 +1,16 @@
+{
+  "name": "Orvix Admin Console",
+  "short_name": "Admin Console",
+  "start_url": "/admin-secret-portal",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/orvix-logo.png",
+      "sizes": "796x796",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

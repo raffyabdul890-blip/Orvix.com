@@ -14,7 +14,8 @@ export function SiteChrome({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isWorkspace = pathname.startsWith("/dashboard");
+  const isWorkspace =
+    pathname.startsWith("/dashboard") || pathname.startsWith("/admin-secret-portal");
 
   if (isWorkspace) {
     return <>{children}</>;
