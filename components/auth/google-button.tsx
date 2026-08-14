@@ -7,15 +7,22 @@ import { toast } from "@/lib/toast";
 import { Button } from "@/components/ui/button";
 import { GoogleIcon } from "@/components/auth/google-icon";
 
-export function GoogleButton({ label = "Continue with Google" }: { label?: string }) {
+export function GoogleButton({
+  label = "Continue with Google",
+  next = "/dashboard",
+}: {
+  label?: string;
+  next?: string;
+}) {
   const [loading, setLoading] = React.useState(false);
 
   async function handleClick() {
     setLoading(true);
     const supabase = createClient();
+    const redirectTo = `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`;
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: `${window.location.origin}/auth/callback` },
+      options: { redirectTo },
     });
 
     if (error) {

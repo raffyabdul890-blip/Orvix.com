@@ -26,17 +26,26 @@ type NavEntry =
   | { type: "link"; key: string; label: string; href: string }
   | { type: "menu"; key: string; label: string; href: string };
 
+const TOP_NAV_CATEGORY_SLUGS: ServiceCategorySlug[] = [
+  "development",
+  "grow",
+  "automations",
+  "security",
+  "branding",
+];
+
 const navEntries: NavEntry[] = [
   { type: "link", key: "home", label: "Home", href: "/" },
   { type: "menu", key: "services", label: "Services", href: "/services" },
-  ...serviceCategories.map(
-    (category): NavEntry => ({
+  ...TOP_NAV_CATEGORY_SLUGS.map((slug): NavEntry => {
+    const category = serviceCategories.find((item) => item.slug === slug);
+    return {
       type: "menu",
-      key: category.slug,
-      label: category.title,
-      href: `/services?category=${category.slug}`,
-    })
-  ),
+      key: slug,
+      label: category?.title ?? slug,
+      href: `/services?category=${slug}`,
+    };
+  }),
   { type: "link", key: "contact", label: "Contact", href: "/contact" },
 ];
 

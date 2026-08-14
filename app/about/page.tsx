@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Compass, Hammer, Rocket } from "lucide-react";
 
 import { CtaSection } from "@/components/home/cta-section";
+import { getAllServices, serviceCategories } from "@/lib/data/services";
 
 export const metadata: Metadata = {
   title: "About",
@@ -10,8 +11,8 @@ export const metadata: Metadata = {
 };
 
 const stats = [
-  { value: "27", label: "services offered" },
-  { value: "5", label: "integrated disciplines" },
+  { value: String(getAllServices().length), label: "services offered" },
+  { value: String(serviceCategories.length), label: "integrated disciplines" },
   { value: "1", label: "accountable team" },
 ];
 

@@ -5,17 +5,17 @@
   --font-display: var(--font-sora);
   --font-accent: var(--font-instrument-serif);
 
-  --color-brand-50: #f4f2ff;
-  --color-brand-100: #ebe6ff;
-  --color-brand-200: #d9d0ff;
-  --color-brand-300: #bcabff;
-  --color-brand-400: #9a7dff;
-  --color-brand-500: #7c4dff;
-  --color-brand-600: #6d28f0;
-  --color-brand-700: #5c1fcc;
-  --color-brand-800: #4b1aa3;
-  --color-brand-900: #3e1985;
-  --color-brand-950: #250d57;
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #3b82f6;
+  --color-brand-500: #2563eb;
+  --color-brand-600: #1d4ed8;
+  --color-brand-700: #1e40af;
+  --color-brand-800: #1e3a8a;
+  --color-brand-900: #172554;
+  --color-brand-950: #0f1729;
 
   --color-accent-300: #7ef4dc;
   --color-accent-400: #45e6c6;
@@ -29,7 +29,7 @@
   --color-ink-600: #454a63;
   --color-ink-800: #1c1f30;
   --color-ink-900: #12141f;
-  --color-ink-950: #0a0b13;
+  --color-ink-950: #0b0f19;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-slow: float 9s ease-in-out infinite;
@@ -143,6 +143,16 @@
         color-mix(in srgb, var(--color-ink-100) 60%, transparent) 1px,
         transparent 1px
       );
+    background-size: 44px 44px;
+  }
+
+  .bg-grid-dark {
+    background-image: linear-gradient(
+        to right,
+        rgb(255 255 255 / 6%) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgb(255 255 255 / 6%) 1px, transparent 1px);
     background-size: 44px 44px;
   }
 

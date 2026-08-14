@@ -42,7 +42,7 @@ const item: Variants = {
 
 export function WhyUs() {
   return (
-    <section className="bg-ink-950 py-24">
+    <section className="border-t border-white/5 bg-ink-950 py-24">
       <div className="container-page">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>

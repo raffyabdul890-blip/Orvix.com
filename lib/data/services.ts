@@ -1,32 +1,64 @@
 import {
+  Award,
+  BarChart2,
   Bot,
+  Boxes,
   CalendarCheck,
+  Camera,
   Clapperboard,
   ClipboardList,
+  Cloud,
   Code2,
+  CreditCard,
+  Database,
+  Feather,
   FileSearch,
   FileStack,
+  FileText,
+  Film,
+  FlaskConical,
+  GitBranch,
   Globe,
   Headset,
   KeyRound,
+  LayoutDashboard,
+  LineChart,
   Lock,
+  Mail,
   MapPin,
   Megaphone,
+  Mic,
   MessageSquareText,
+  MousePointerClick,
+  Network,
+  Package,
   Palette,
   PenTool,
+  PieChart,
   Plug,
+  Presentation,
+  Radar,
   Repeat,
   RefreshCw,
   Rocket,
+  RotateCcw,
+  Scissors,
+  ScrollText,
   SearchCheck,
   Server,
   Share2,
   ShieldAlert,
   ShieldCheck,
+  ShoppingBag,
   ShoppingCart,
   Sparkles,
+  SquarePlay,
+  Store,
+  Target,
   TrendingUp,
+  UsersRound,
+  Video,
+  Warehouse,
   Workflow,
   type LucideIcon,
 } from "lucide-react";
@@ -36,7 +68,10 @@ export type ServiceCategorySlug =
   | "grow"
   | "automations"
   | "security"
-  | "branding";
+  | "branding"
+  | "commerce"
+  | "content"
+  | "data";
 
 export interface ServiceItem {
   slug: string;
@@ -593,6 +628,576 @@ export const serviceCategories: ServiceCategory[] = [
         priceNote: "one-time",
         deliveryTime: "1 week",
         icon: FileStack,
+      },
+    ],
+  },
+  {
+    slug: "commerce",
+    title: "Commerce",
+    tagline: "Ecommerce & Marketplaces",
+    description:
+      "Storefronts, checkout flows, and marketplace listings built to turn browsers into repeat buyers.",
+    icon: ShoppingBag,
+    services: [
+      {
+        slug: "shopify-store-build",
+        name: "Shopify Store Build",
+        shortDescription:
+          "A fully themed, conversion-ready Shopify store configured for your catalog and checkout.",
+        description:
+          "A custom-themed Shopify storefront built around your catalog, brand, and checkout flow — configured with the apps and integrations you actually need, not a bloated default install.",
+        features: [
+          "Custom theme setup & styling",
+          "Product & collection configuration",
+          "Checkout & shipping setup",
+          "App & integration configuration",
+        ],
+        startingPrice: "$1,299",
+        priceNote: "one-time",
+        deliveryTime: "2–3 weeks",
+        icon: Store,
+      },
+      {
+        slug: "marketplace-listing-optimization",
+        name: "Amazon & Marketplace Listing Optimization",
+        shortDescription:
+          "Keyword-optimized listings and imagery built to win the buy box on major marketplaces.",
+        description:
+          "Optimized titles, bullet points, backend keywords, and imagery for your Amazon or marketplace listings, built to improve search placement and click-through without violating platform policy.",
+        features: [
+          "Keyword research & indexing audit",
+          "Title, bullet & description rewrite",
+          "Backend search term optimization",
+          "Competitor listing benchmarking",
+        ],
+        startingPrice: "$349",
+        priceNote: "per listing",
+        deliveryTime: "3–5 business days",
+        icon: Package,
+      },
+      {
+        slug: "subscription-commerce-setup",
+        name: "Subscription & Membership Commerce Setup",
+        shortDescription:
+          "Recurring billing, member portals, and subscription logic configured end to end.",
+        description:
+          "A complete subscription or membership commerce build — recurring billing, plan tiers, dunning management, and a self-serve member portal — configured on the platform you already use.",
+        features: [
+          "Recurring billing configuration",
+          "Plan tiers & upgrade/downgrade logic",
+          "Failed payment & dunning flows",
+          "Self-serve member portal",
+        ],
+        startingPrice: "$1,099",
+        priceNote: "one-time",
+        deliveryTime: "2 weeks",
+        icon: CreditCard,
+      },
+      {
+        slug: "abandoned-cart-recovery",
+        name: "Abandoned Cart Recovery Flows",
+        shortDescription:
+          "Automated email and SMS sequences that win back carts before they're forgotten.",
+        description:
+          "Multi-step email and SMS recovery sequences triggered the moment a cart is abandoned, tuned with the timing and incentives that bring shoppers back to complete checkout.",
+        features: [
+          "Multi-step recovery sequence build",
+          "Email & SMS channel setup",
+          "Incentive & discount logic",
+          "Recovery rate reporting",
+        ],
+        startingPrice: "$399",
+        priceNote: "one-time",
+        deliveryTime: "1 week",
+        icon: RotateCcw,
+      },
+      {
+        slug: "product-catalog-migration",
+        name: "Product Catalog Migration",
+        shortDescription:
+          "Clean, structured migration of your full product catalog to a new commerce platform.",
+        description:
+          "A structured migration of your entire product catalog — variants, images, pricing, and metadata — to a new commerce platform, with data integrity checks so nothing gets lost in transit.",
+        features: [
+          "Full catalog data mapping",
+          "Variant, image & pricing migration",
+          "SEO redirect mapping",
+          "Post-migration QA pass",
+        ],
+        startingPrice: "$799",
+        priceNote: "one-time",
+        deliveryTime: "1–2 weeks",
+        icon: Boxes,
+      },
+      {
+        slug: "payment-gateway-integration",
+        name: "Payment Gateway Integration",
+        shortDescription:
+          "Secure, PCI-compliant payment processing wired into your storefront or app.",
+        description:
+          "Secure payment gateway integration — cards, wallets, and buy-now-pay-later options — wired directly into your storefront or app, tested against real transaction scenarios before launch.",
+        features: [
+          "Gateway account configuration",
+          "Card, wallet & BNPL support",
+          "PCI-compliant checkout flow",
+          "Transaction testing & QA",
+        ],
+        startingPrice: "$549",
+        priceNote: "one-time",
+        deliveryTime: "1 week",
+        icon: CreditCard,
+      },
+      {
+        slug: "inventory-pos-integration",
+        name: "Inventory & POS Integration",
+        shortDescription:
+          "Real-time inventory sync between your online store and in-person point of sale.",
+        description:
+          "Real-time, two-way inventory sync between your online store and physical point-of-sale system, so stock levels stay accurate whether the sale happens online or in person.",
+        features: [
+          "POS & storefront sync setup",
+          "Real-time inventory updates",
+          "Multi-location stock tracking",
+          "Low-stock alert configuration",
+        ],
+        startingPrice: "$899",
+        priceNote: "one-time",
+        deliveryTime: "1–2 weeks",
+        icon: Warehouse,
+      },
+      {
+        slug: "store-conversion-rate-optimization",
+        name: "Conversion Rate Optimization for Stores",
+        shortDescription:
+          "Data-backed testing program focused on lifting your store's checkout conversion rate.",
+        description:
+          "An ongoing testing program focused specifically on your storefront's conversion funnel — product pages, cart, and checkout — backed by session recordings and real experiment data, not guesswork.",
+        features: [
+          "Funnel & session recording audit",
+          "Prioritized test roadmap",
+          "A/B test build & analysis",
+          "Monthly performance reporting",
+        ],
+        startingPrice: "$799",
+        priceNote: "/month",
+        deliveryTime: "Ongoing",
+        icon: MousePointerClick,
+      },
+      {
+        slug: "loyalty-rewards-program",
+        name: "Loyalty & Rewards Program Setup",
+        shortDescription:
+          "A points-based loyalty program configured to increase repeat purchase rate.",
+        description:
+          "A fully configured points-and-rewards loyalty program — earning rules, redemption tiers, and referral bonuses — built to turn one-time buyers into repeat customers.",
+        features: [
+          "Points & tier structure design",
+          "Redemption rules configuration",
+          "Referral bonus setup",
+          "Customer-facing rewards portal",
+        ],
+        startingPrice: "$649",
+        priceNote: "one-time",
+        deliveryTime: "1–2 weeks",
+        icon: Award,
+      },
+      {
+        slug: "marketplace-ads-management",
+        name: "Marketplace Ads Management (Amazon PPC)",
+        shortDescription:
+          "Sponsored product and brand campaigns managed to grow marketplace sales profitably.",
+        description:
+          "Sponsored product, brand, and display campaigns built and actively managed on Amazon and other marketplaces, tuned toward a target ACoS instead of just raw click volume.",
+        features: [
+          "Campaign structure & keyword build",
+          "Bid management & optimization",
+          "Negative keyword maintenance",
+          "Weekly performance reporting",
+        ],
+        startingPrice: "$549",
+        priceNote: "/month + ad spend",
+        deliveryTime: "Ongoing",
+        icon: Target,
+      },
+    ],
+  },
+  {
+    slug: "content",
+    title: "Content & Video",
+    tagline: "Content Marketing & Production",
+    description:
+      "Writing, video, and audio built to earn attention and hold it long enough to convert.",
+    icon: Video,
+    services: [
+      {
+        slug: "blog-content-strategy-writing",
+        name: "Blog Content Strategy & Writing",
+        shortDescription:
+          "A keyword-mapped content calendar with professionally written articles delivered monthly.",
+        description:
+          "A blog content program built around real search demand — topic research, a keyword-mapped calendar, and professionally written articles delivered on a predictable monthly schedule.",
+        features: [
+          "Keyword & topic research",
+          "Monthly content calendar",
+          "SEO-optimized article writing",
+          "On-brand style & tone guide",
+        ],
+        startingPrice: "$599",
+        priceNote: "/month",
+        deliveryTime: "Ongoing",
+        icon: FileText,
+      },
+      {
+        slug: "youtube-channel-strategy-production",
+        name: "YouTube Channel Strategy & Production",
+        shortDescription:
+          "Channel strategy, scripting, and edited video production to grow a branded YouTube presence.",
+        description:
+          "End-to-end YouTube support — channel strategy, video scripting, and full post-production — built to grow a consistent, on-brand presence instead of one-off uploads.",
+        features: [
+          "Channel & content strategy",
+          "Video scripting",
+          "Filming guidance & direction",
+          "Full editing & thumbnail design",
+        ],
+        startingPrice: "$1,299",
+        priceNote: "/month",
+        deliveryTime: "Ongoing",
+        icon: SquarePlay,
+      },
+      {
+        slug: "podcast-production-editing",
+        name: "Podcast Production & Editing",
+        shortDescription:
+          "Full podcast editing, show notes, and distribution so every episode ships polished.",
+        description:
+          "Full-service podcast production — episode editing, show notes, chapter markers, and multi-platform distribution — so recording is the only part left on your plate.",
+        features: [
+          "Episode editing & mastering",
+          "Show notes & chapter markers",
+          "Multi-platform distribution",
+          "Audiogram & clip creation",
+        ],
+        startingPrice: "$249",
+        priceNote: "per episode",
+        deliveryTime: "3–5 business days",
+        icon: Mic,
+      },
+      {
+        slug: "email-newsletter-content",
+        name: "Email Newsletter Content",
+        shortDescription:
+          "Written, designed, and scheduled newsletters that keep your list engaged and buying.",
+        description:
+          "A recurring email newsletter program — writing, design, and scheduling — built to keep your list warm and drive consistent traffic back to what you're selling.",
+        features: [
+          "Newsletter writing & design",
+          "Segmentation & scheduling",
+          "A/B subject line testing",
+          "Monthly performance reporting",
+        ],
+        startingPrice: "$449",
+        priceNote: "/month",
+        deliveryTime: "Ongoing",
+        icon: Mail,
+      },
+      {
+        slug: "case-study-whitepaper-writing",
+        name: "Case Study & Whitepaper Writing",
+        shortDescription:
+          "Long-form proof assets that turn your best results into a sales tool.",
+        description:
+          "Professionally researched and written case studies and whitepapers that turn your best client results into a credible, shareable sales asset for your team.",
+        features: [
+          "Client interview & research",
+          "Narrative structure & writing",
+          "Data & result visualization",
+          "Print-ready & web-ready formats",
+        ],
+        startingPrice: "$549",
+        priceNote: "per asset",
+        deliveryTime: "1–2 weeks",
+        icon: ScrollText,
+      },
+      {
+        slug: "explainer-video-production",
+        name: "Explainer Video Production",
+        shortDescription:
+          "A scripted, animated explainer video that simplifies your product in under 90 seconds.",
+        description:
+          "A fully scripted and animated explainer video that breaks your product or service down into a clear, under-90-second story — built for landing pages, ads, and sales decks.",
+        features: [
+          "Script & storyboard development",
+          "Custom animation & voiceover",
+          "Two rounds of revisions",
+          "Multiple export formats",
+        ],
+        startingPrice: "$1,199",
+        priceNote: "per video",
+        deliveryTime: "2–3 weeks",
+        icon: Film,
+      },
+      {
+        slug: "product-photography",
+        name: "Product Photography",
+        shortDescription:
+          "Studio-quality product photography ready for your store, ads, and marketplace listings.",
+        description:
+          "Studio-quality product photography — clean backgrounds, lifestyle shots, and detail close-ups — delivered edited and ready for your store, ads, and marketplace listings.",
+        features: [
+          "Studio & lifestyle shot setups",
+          "Professional photo editing",
+          "Multiple angles per product",
+          "Web-optimized export files",
+        ],
+        startingPrice: "$399",
+        priceNote: "per batch",
+        deliveryTime: "1 week",
+        icon: Camera,
+      },
+      {
+        slug: "content-repurposing",
+        name: "Content Repurposing (Long-Form to Shorts)",
+        shortDescription:
+          "Your long-form video or podcast cut into a month's worth of short-form social clips.",
+        description:
+          "Your existing long-form video or podcast content cut down into a steady stream of short-form clips for Reels, TikTok, and Shorts — captioned and formatted for each platform.",
+        features: [
+          "Long-form content review",
+          "Clip selection & editing",
+          "Platform-native captioning",
+          "Batch delivery for scheduling",
+        ],
+        startingPrice: "$599",
+        priceNote: "/month",
+        deliveryTime: "Ongoing",
+        icon: Scissors,
+      },
+      {
+        slug: "seo-content-clusters",
+        name: "SEO Content Clusters",
+        shortDescription:
+          "A pillar-and-cluster content structure built to dominate a topic in search.",
+        description:
+          "A pillar-and-cluster content structure — one authoritative pillar page supported by a network of linked articles — built to establish topical authority and compound your organic rankings.",
+        features: [
+          "Topic & cluster mapping",
+          "Pillar page writing",
+          "Supporting cluster articles",
+          "Internal linking strategy",
+        ],
+        startingPrice: "$1,499",
+        priceNote: "per cluster",
+        deliveryTime: "3–4 weeks",
+        icon: Network,
+      },
+      {
+        slug: "ghostwriting-founders-executives",
+        name: "Ghostwriting for Founders & Executives",
+        shortDescription:
+          "LinkedIn posts and articles written in your voice to build a personal brand consistently.",
+        description:
+          "Consistent LinkedIn posts and long-form articles ghostwritten in your voice, built from a recurring interview process so your personal brand keeps growing without eating your calendar.",
+        features: [
+          "Recurring voice-capture interviews",
+          "Weekly post writing",
+          "Content calendar management",
+          "Engagement & topic reporting",
+        ],
+        startingPrice: "$799",
+        priceNote: "/month",
+        deliveryTime: "Ongoing",
+        icon: Feather,
+      },
+    ],
+  },
+  {
+    slug: "data",
+    title: "Data & Insights",
+    tagline: "Analytics & Reporting",
+    description:
+      "Tracking, dashboards, and testing programs that turn raw activity into decisions worth acting on.",
+    icon: BarChart2,
+    services: [
+      {
+        slug: "analytics-setup-ga4-mixpanel",
+        name: "Analytics Setup (GA4 / Mixpanel)",
+        shortDescription:
+          "Properly configured event tracking so every report you pull is actually trustworthy.",
+        description:
+          "A ground-up analytics implementation across GA4 or Mixpanel — event tracking, conversions, and funnels — configured correctly the first time so every report downstream is trustworthy.",
+        features: [
+          "Event & conversion tracking setup",
+          "Funnel & goal configuration",
+          "Cross-domain tracking",
+          "Data validation & QA",
+        ],
+        startingPrice: "$549",
+        priceNote: "one-time",
+        deliveryTime: "1 week",
+        icon: LineChart,
+      },
+      {
+        slug: "custom-bi-dashboard-build",
+        name: "Custom BI Dashboard Build",
+        shortDescription:
+          "A live, custom dashboard pulling your key metrics into one shareable view.",
+        description:
+          "A custom business intelligence dashboard that pulls data from your marketing, sales, and product tools into a single live view — built around the metrics your team actually checks.",
+        features: [
+          "Data source connection & mapping",
+          "Custom dashboard design",
+          "Automated data refresh",
+          "Team access & sharing setup",
+        ],
+        startingPrice: "$1,199",
+        priceNote: "one-time",
+        deliveryTime: "2 weeks",
+        icon: LayoutDashboard,
+      },
+      {
+        slug: "ab-testing-cro-program",
+        name: "A/B Testing & CRO Program",
+        shortDescription:
+          "An ongoing experimentation program that systematically lifts conversion rate.",
+        description:
+          "A structured, ongoing experimentation program — hypothesis backlog, test builds, and statistical analysis — that replaces one-off redesigns with compounding, data-backed conversion gains.",
+        features: [
+          "Hypothesis backlog & prioritization",
+          "Test design & implementation",
+          "Statistical significance analysis",
+          "Monthly experiment reporting",
+        ],
+        startingPrice: "$899",
+        priceNote: "/month",
+        deliveryTime: "Ongoing",
+        icon: FlaskConical,
+      },
+      {
+        slug: "attribution-modeling",
+        name: "Attribution Modeling",
+        shortDescription:
+          "A clear model of which channels actually drive revenue, not just last-click credit.",
+        description:
+          "A multi-touch attribution model built around your real customer journey, so budget decisions are based on which channels actually drive revenue instead of last-click guesswork.",
+        features: [
+          "Customer journey mapping",
+          "Multi-touch model configuration",
+          "Channel contribution reporting",
+          "Budget allocation recommendations",
+        ],
+        startingPrice: "$999",
+        priceNote: "one-time",
+        deliveryTime: "1–2 weeks",
+        icon: GitBranch,
+      },
+      {
+        slug: "customer-data-platform-setup",
+        name: "Customer Data Platform Setup",
+        shortDescription:
+          "A unified customer profile built by connecting every tool that touches customer data.",
+        description:
+          "A customer data platform implementation that unifies profiles across your marketing, sales, and support tools, so every system works from the same, accurate view of each customer.",
+        features: [
+          "Data source integration",
+          "Identity resolution & merging",
+          "Unified profile configuration",
+          "Downstream tool syncing",
+        ],
+        startingPrice: "$1,599",
+        priceNote: "one-time",
+        deliveryTime: "2–3 weeks",
+        icon: Database,
+      },
+      {
+        slug: "competitive-intelligence-reporting",
+        name: "Competitive Intelligence Reporting",
+        shortDescription:
+          "Ongoing tracking of competitor pricing, positioning, and marketing moves.",
+        description:
+          "A recurring competitive intelligence report tracking competitor pricing, positioning, ad creative, and organic moves, delivered as a concise briefing your team can actually act on.",
+        features: [
+          "Competitor tracking setup",
+          "Pricing & positioning analysis",
+          "Ad & content monitoring",
+          "Monthly briefing report",
+        ],
+        startingPrice: "$399",
+        priceNote: "/month",
+        deliveryTime: "Ongoing",
+        icon: Radar,
+      },
+      {
+        slug: "marketing-mix-modeling",
+        name: "Marketing Mix Modeling",
+        shortDescription:
+          "A channel-level model of marketing ROI that accounts for offline and brand effects too.",
+        description:
+          "A statistical marketing mix model that estimates the true ROI of each channel — including offline and brand effects that pixel-based attribution misses — to guide budget planning.",
+        features: [
+          "Historical spend & revenue analysis",
+          "Channel-level ROI modeling",
+          "Diminishing returns curves",
+          "Budget scenario planning",
+        ],
+        startingPrice: "$1,899",
+        priceNote: "one-time",
+        deliveryTime: "3 weeks",
+        icon: PieChart,
+      },
+      {
+        slug: "cohort-retention-analysis",
+        name: "Cohort & Retention Analysis",
+        shortDescription:
+          "A clear breakdown of who sticks around, who churns, and why.",
+        description:
+          "A detailed cohort and retention analysis segmented by acquisition source, plan, and behavior, surfacing exactly where customers drop off so you know what to fix first.",
+        features: [
+          "Cohort segmentation setup",
+          "Retention curve analysis",
+          "Churn driver identification",
+          "Actionable findings report",
+        ],
+        startingPrice: "$699",
+        priceNote: "one-time",
+        deliveryTime: "1 week",
+        icon: UsersRound,
+      },
+      {
+        slug: "data-warehouse-setup",
+        name: "Data Warehouse Setup",
+        shortDescription:
+          "A centralized warehouse that consolidates every data source into one queryable place.",
+        description:
+          "A centralized cloud data warehouse that consolidates every marketing, product, and sales data source into one place, built on a schema your team can actually query and trust.",
+        features: [
+          "Warehouse provisioning & schema design",
+          "ETL pipeline configuration",
+          "Source system integration",
+          "Access control & documentation",
+        ],
+        startingPrice: "$1,799",
+        priceNote: "one-time",
+        deliveryTime: "2–3 weeks",
+        icon: Cloud,
+      },
+      {
+        slug: "executive-reporting-automation",
+        name: "Executive Reporting Automation",
+        shortDescription:
+          "Automated, board-ready reports delivered on a schedule with zero manual pulling.",
+        description:
+          "Automated executive reporting that compiles your key metrics into a board-ready deck or document on a recurring schedule, eliminating the manual data-pulling every reporting cycle.",
+        features: [
+          "Key metric identification",
+          "Automated report templating",
+          "Scheduled delivery configuration",
+          "Quarterly template refresh",
+        ],
+        startingPrice: "$599",
+        priceNote: "/month",
+        deliveryTime: "Ongoing",
+        icon: Presentation,
       },
     ],
   },

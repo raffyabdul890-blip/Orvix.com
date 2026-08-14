@@ -10,7 +10,13 @@ export const metadata: Metadata = {
   description: "Create your Orvix account.",
 };
 
-export default function SignUpPage() {
+export default async function SignUpPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ next?: string }>;
+}) {
+  const { next } = await searchParams;
+
   return (
     <div className="relative isolate flex min-h-[85vh] items-center justify-center overflow-hidden bg-white">
       <div className="bg-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_60%_60%_at_50%_10%,black,transparent)]" />
@@ -29,7 +35,7 @@ export default function SignUpPage() {
             Sign up to track projects, approvals, and reporting in one place.
           </p>
           <div className="mt-7 w-full">
-            <SignUpForm />
+            <SignUpForm next={next} />
           </div>
         </AuthCard>
 

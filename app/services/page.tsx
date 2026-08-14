@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 
 import { CategoryTabs } from "@/components/services/category-tabs";
-import { serviceCategories } from "@/lib/data/services";
+import { getAllServices, serviceCategories } from "@/lib/data/services";
+
+const serviceCount = getAllServices().length;
+const categoryCount = serviceCategories.length;
 
 export const metadata: Metadata = {
   title: "Services",
-  description:
-    "Browse all 27 services across development, growth, automations, security, and branding — everything Orvix offers to help your business grow.",
+  description: `Browse all ${serviceCount} services across ${serviceCategories
+    .map((category) => category.title.toLowerCase())
+    .join(", ")} — everything Orvix offers to help your business grow.`,
 };
 
 const CATEGORY_SLUGS = serviceCategories.map((category) => category.slug);
@@ -32,8 +36,8 @@ export default async function ServicesPage({
           Everything we build, grow, automate & protect
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-balance text-ink-600">
-          27 services across 5 disciplines. Filter by category or browse
-          everything at once.
+          {serviceCount} services across {categoryCount} disciplines. Filter
+          by category or browse everything at once.
         </p>
       </section>
 

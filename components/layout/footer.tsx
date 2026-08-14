@@ -6,19 +6,31 @@ import { serviceCategories } from "@/lib/data/services";
 import { siteConfig } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
 
-const FOOTER_CATEGORY_LABELS: Record<string, string> = {
-  development: "Build",
-  grow: "Grow",
-  automations: "Automate",
-  security: "Secure",
-  branding: "Brand",
-};
+const CONVERT_SLUGS = new Set(["ads-setup-management", "social-media-management"]);
+
+function findCategory(slug: string) {
+  return serviceCategories.find((category) => category.slug === slug);
+}
+
+const development = findCategory("development");
+const grow = findCategory("grow");
+const automations = findCategory("automations");
+
+const growServices = grow?.services.filter((service) => !CONVERT_SLUGS.has(service.slug)) ?? [];
+const convertServices = grow?.services.filter((service) => CONVERT_SLUGS.has(service.slug)) ?? [];
+
+const FOOTER_COLUMNS = [
+  { label: "Build", services: development?.services ?? [] },
+  { label: "Grow", services: growServices },
+  { label: "Convert", services: convertServices },
+  { label: "Automate", services: automations?.services ?? [] },
+];
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-ink-100 bg-ink-950 text-ink-200">
+    <footer className="border-t border-white/5 bg-ink-950 text-ink-200">
       <div className="container-page flex flex-col items-center gap-7 py-20 text-center">
         <p className="text-sm font-semibold tracking-wide text-accent-400 uppercase">
           Ready when you are
@@ -57,7 +69,12 @@ export function Footer() {
               Digital marketing that rises above. Strategy, creative, and
               engineering under one roof.
             </p>
-            <Button asChild variant="outline" size="sm" className="w-fit border-white/15 bg-transparent text-white hover:border-accent-400/40 hover:text-accent-400">
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="w-fit border-white bg-transparent text-white hover:bg-white hover:text-ink-950"
+            >
               <Link href="/contact">
                 Contact us
                 <ArrowRight className="size-4" />
@@ -65,14 +82,14 @@ export function Footer() {
             </Button>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-6">
-            {serviceCategories.map((category) => (
-              <div key={category.slug} className="flex flex-col gap-3">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
+            {FOOTER_COLUMNS.map((column) => (
+              <div key={column.label} className="flex flex-col gap-3">
                 <h3 className="text-sm font-semibold tracking-wide text-white uppercase">
-                  {FOOTER_CATEGORY_LABELS[category.slug] ?? category.title}
+                  {column.label}
                 </h3>
                 <ul className="flex flex-col gap-2.5">
-                  {category.services.map((service) => (
+                  {column.services.map((service) => (
                     <li key={service.slug}>
                       <Link
                         href={`/services/${service.slug}`}

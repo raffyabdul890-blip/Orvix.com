@@ -60,6 +60,13 @@ export function AuditModal() {
     if (seen) return;
 
     const timer = setTimeout(() => {
+      if (document.querySelector('[role="dialog"]')) {
+        // Another modal (chat, review form, etc.) is already open — don't
+        // stack on top of it. Leave the flag unset so it can try again on
+        // the next homepage visit.
+        return;
+      }
+
       setIsOpen(true);
       try {
         window.localStorage.setItem(STORAGE_KEY, "1");

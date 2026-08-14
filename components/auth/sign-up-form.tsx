@@ -12,7 +12,7 @@ import { GoogleButton } from "@/components/auth/google-button";
 
 type Status = "idle" | "submitting";
 
-export function SignUpForm() {
+export function SignUpForm({ next = "/dashboard" }: { next?: string }) {
   const router = useRouter();
   const [status, setStatus] = React.useState<Status>("idle");
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
@@ -33,7 +33,7 @@ export function SignUpForm() {
       password,
       options: {
         data: { full_name: name },
-        emailRedirectTo: `${window.location.origin}/auth/callback`,
+        emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
       },
     });
 
@@ -45,7 +45,7 @@ export function SignUpForm() {
 
     if (data.session) {
       toast.success("Account created — welcome to Orvix!");
-      router.push("/");
+      router.push(next);
       router.refresh();
       return;
     }
@@ -126,7 +126,7 @@ export function SignUpForm() {
         <span className="h-px flex-1 bg-ink-100" />
       </div>
 
-      <GoogleButton label="Sign up with Google" />
+      <GoogleButton label="Sign up with Google" next={next} />
     </form>
   );
 }

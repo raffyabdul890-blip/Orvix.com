@@ -1,10 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { Loader2, Send } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowRight, Loader2 } from "lucide-react";
 
 import { serviceCategories } from "@/lib/data/services";
 import { toast } from "@/lib/toast";
+import { createClient } from "@/lib/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
@@ -14,6 +16,7 @@ import { Button } from "@/components/ui/button";
 type Status = "idle" | "submitting" | "error";
 
 export function LeadForm() {
+  const router = useRouter();
   const [status, setStatus] = React.useState<Status>("idle");
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
@@ -47,6 +50,19 @@ export function LeadForm() {
         return;
       }
 
+      // Signed-in visitors land in their workspace; anonymous leads just get
+      // the confirmation toast and a cleared form.
+      const supabase = createClient();
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (session) {
+        toast.success("You're all set — taking you to your workspace.");
+        router.push("/dashboard");
+        return;
+      }
+
       toast.success(data.message ?? "Thanks — we'll be in touch shortly.");
       form.reset();
       setStatus("idle");
@@ -62,7 +78,7 @@ export function LeadForm() {
         <label htmlFor="lead-name" className="mb-1.5 block text-sm font-medium text-ink-900">
           Your name
         </label>
-        <Input id="lead-name" name="name" type="text" autoComplete="name" required placeholder="Jordan Rivera" />
+        <Input id="lead-name" name="name" type="text" autoComplete="name" required placeholder="Jane Doe" />
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
@@ -76,14 +92,14 @@ export function LeadForm() {
             type="email"
             autoComplete="email"
             required
-            placeholder="jordan@company.com"
+            placeholder="jane@company.com"
           />
         </div>
         <div>
           <label htmlFor="lead-phone" className="mb-1.5 block text-sm font-medium text-ink-900">
             Phone
           </label>
-          <Input id="lead-phone" name="phone" type="tel" autoComplete="tel" placeholder="(555) 010-2030" />
+          <Input id="lead-phone" name="phone" type="tel" autoComplete="tel" placeholder="+1 555 000 0000" />
         </div>
       </div>
 
@@ -92,7 +108,7 @@ export function LeadForm() {
           Primary interest
         </label>
         <Select id="lead-interest" name="interest" defaultValue="">
-          <option value="">Not sure yet</option>
+          <option value="">Select a service</option>
           {serviceCategories.map((category) => (
             <option key={category.slug} value={category.title}>
               {category.title} — {category.tagline}
@@ -110,7 +126,7 @@ export function LeadForm() {
           name="message"
           rows={3}
           required
-          placeholder="e.g. more qualified leads from our website"
+          placeholder="A few words about your goals..."
         />
       </div>
 
@@ -147,7 +163,7 @@ export function LeadForm() {
         ) : (
           <>
             Submit
-            <Send className="size-4" />
+            <ArrowRight className="size-4" />
           </>
         )}
       </Button>

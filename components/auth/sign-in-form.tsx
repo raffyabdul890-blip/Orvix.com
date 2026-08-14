@@ -12,7 +12,7 @@ import { GoogleButton } from "@/components/auth/google-button";
 
 type Status = "idle" | "submitting";
 
-export function SignInForm() {
+export function SignInForm({ next = "/dashboard" }: { next?: string }) {
   const router = useRouter();
   const [status, setStatus] = React.useState<Status>("idle");
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
@@ -36,7 +36,7 @@ export function SignInForm() {
     }
 
     toast.success("Welcome back!");
-    router.push("/");
+    router.push(next);
     router.refresh();
   }
 
@@ -97,7 +97,7 @@ export function SignInForm() {
         <span className="h-px flex-1 bg-ink-100" />
       </div>
 
-      <GoogleButton />
+      <GoogleButton next={next} />
     </form>
   );
 }

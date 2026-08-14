@@ -1,12 +1,19 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { serviceCategories, type ServiceCategorySlug } from "@/lib/data/services";
+import {
+  getAllServices,
+  serviceCategories,
+  type ServiceCategorySlug,
+} from "@/lib/data/services";
+
+const serviceCount = getAllServices().length;
+const categoryCount = serviceCategories.length;
 
 export function ServicesOverviewPanel({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <div className="p-6">
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {serviceCategories.map((category) => {
           const Icon = category.icon;
           return (
@@ -32,7 +39,9 @@ export function ServicesOverviewPanel({ onNavigate }: { onNavigate?: () => void 
         })}
       </div>
       <div className="mt-5 flex items-center justify-between border-t border-ink-100 pt-4">
-        <p className="text-sm text-ink-600">27 services across 5 disciplines.</p>
+        <p className="text-sm text-ink-600">
+          {serviceCount} services across {categoryCount} disciplines.
+        </p>
         <Link
           href="/services"
           onClick={onNavigate}

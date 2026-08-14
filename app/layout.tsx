@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Plus_Jakarta_Sans, Sora } from "next/font/google";
 
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { ChatWidget } from "@/components/chat/chat-widget";
+import { SiteChrome } from "@/components/layout/site-chrome";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/lib/site-config";
 
@@ -60,10 +58,7 @@ export default function RootLayout({
       <body
         className={`${jakarta.variable} ${sora.variable} ${instrumentSerif.variable} font-sans antialiased`}
       >
-        <Header />
-        <main className="pt-18">{children}</main>
-        <Footer />
-        <ChatWidget />
+        <SiteChrome>{children}</SiteChrome>
         <Toaster />
       </body>
     </html>
