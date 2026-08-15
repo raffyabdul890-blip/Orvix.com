@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import {
+  AlertTriangle,
   Building2,
   Globe,
   Mail,
@@ -146,10 +147,12 @@ export function AdminInboxView({
   leads,
   messages,
   profiles,
+  hasLoadError = false,
 }: {
   leads: LeadRow[];
   messages: MessageRow[];
   profiles: ProfileRow[];
+  hasLoadError?: boolean;
 }) {
   const [items, setItems] = React.useState<InboxItem[]>(() =>
     buildInbox(leads, messages, profiles)
@@ -204,6 +207,16 @@ export function AdminInboxView({
       </div>
 
       <div className="px-4 py-6 sm:px-8">
+        {hasLoadError && (
+          <div className="mb-6 flex items-center gap-2.5 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+            <AlertTriangle className="size-4 shrink-0" />
+            <span>
+              Some data couldn&apos;t be loaded just now — showing what&apos;s
+              available. Refresh to try again.
+            </span>
+          </div>
+        )}
+
         <div className="mb-6 flex flex-wrap gap-2">
           {FILTER_TABS.map((tab) => (
             <button
