@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Plus_Jakarta_Sans, Sora } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import { SiteChrome } from "@/components/layout/site-chrome";
 import { Toaster } from "@/components/ui/toaster";
@@ -69,6 +70,7 @@ export default async function RootLayout({
       >
         <SiteChrome user={sessionUser}>{children}</SiteChrome>
         <Toaster />
+        <GoogleAnalytics gaId="G-H5C5H8TN5Z" />
       </body>
     </html>
   );
